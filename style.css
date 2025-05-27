@@ -1,0 +1,197 @@
+@import url("https://fonts.cdnfonts.com/css/google-sans");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Product Sans', sans-serif;
+  background: radial-gradient(circle at center, #111, #000);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Card Container */
+.card_container {
+  perspective: 1200px;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 5 / 4;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.card_container:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 20px 40px rgba(0, 255, 255, 0.25));
+}
+
+/* Card Flip Wrapper */
+.card {
+  width: 100%;
+  height: 110%;
+  position: relative;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+}
+
+.card_container:hover .card {
+  transform: rotateY(180deg);
+}
+
+/* Front & Back Shared */
+.frontend,
+.backend {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.15),
+              0 0 40px rgba(0, 255, 255, 0.05) inset;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Front Side */
+.frontend {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.frontend img {
+  max-width: 70%;
+  max-height: 60%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.card_container:hover .frontend img {
+  transform: scale(1.05);
+}
+
+/* Back Side */
+.backend {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  background-size: 300% 300%;
+  animation: flow-border 4s linear infinite;
+  padding: 4px;
+}
+
+/* Back Inner Content */
+.backend_cart {
+  background-color: #000;
+  color: white;
+  border-radius: 14px;
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  gap: 16px; /* GAP between internal sections */
+}
+
+/* Text Styling */
+.name {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #00ffff;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 6px 0;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.button-group .butn {
+  flex: 1;
+}
+
+/* Primary Button */
+.butn {
+  padding: 10px 16px;
+  background-color: #00ffff;
+  color: #000;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Secondary Button */
+.butn.secondary {
+  background-color: #00ffff;
+  color: #000;
+  border: 1px solid #00ffff;
+  margin-left: 90px;
+}
+
+.butn:hover {
+  background-color: #004387;
+  color: white;
+}
+
+.butn.secondary:hover {
+  background-color: #004387;
+  color: white;
+}
+
+/* Animated Border Gradient */
+@keyframes flow-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Responsive Text Scaling */
+@media (max-width: 400px) {
+  .title {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .butn {
+    font-size: 0.75rem;
+    padding: 8px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
